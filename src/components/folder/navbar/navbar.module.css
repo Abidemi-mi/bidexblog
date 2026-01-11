@@ -1,0 +1,22 @@
+.container {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.logo{
+    font-size: 1.2rem;
+    font-weight: bold;
+} 
+
+.logo span{
+  color: goldenrod;
+  font-size: 2rem;
+}
+
+.logo span:hover{
+  color: whitesmoke;
+}

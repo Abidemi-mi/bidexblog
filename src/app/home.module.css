@@ -1,0 +1,159 @@
+.container{
+    display: flex;
+    /* gap: 6.2rem ; */
+    gap: 100px;
+}
+
+.textContainer{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.title{
+    font-size: 86px;
+}
+
+.desc{
+    font-size: 20px;
+}
+
+.buttons{
+    display: flex;
+    gap: 20px;
+}
+
+.button
+{
+    padding: 20px;
+    min-width: 120px;
+    cursor: pointer;
+    border: navajowhite;
+    border-radius: 10px;
+}
+
+.button:hover{
+    background-color: whitesmoke;
+}
+
+.button:first-child{
+    background-color: var(--btn); 
+    color: var(--text);
+}
+
+.button:first-child:hover{
+    padding: 19px;
+    border: 1px solid white;
+}
+
+
+.brands{
+    width: 31rem;
+    height: 3.1rem;
+    position: relative;
+    filter: grayscale(100%);
+}
+
+.imageContainer{
+    flex: 1;
+    position: relative;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+    .textContainer{
+        margin-top: 35px;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+    }
+
+  .title {
+    font-size: 64px;
+  }
+
+
+.desc{
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.buttons{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+
+}
+
+.button
+{
+    padding: 20px;
+    min-width: 120px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+  .brands{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brands .brandImg{
+    margin-left: 45px;
+  }
+}
+
+@media (max-width: 768px) {
+    .container{
+      gap: 50px;
+    }
+
+    .textContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+    }
+
+  .title {
+    font-size: 64px;
+  }
+
+
+.desc{
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.buttons{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.button
+{
+    padding: 20px;
+    min-width: 120px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+  .brands{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 17px;
+  }
+}
