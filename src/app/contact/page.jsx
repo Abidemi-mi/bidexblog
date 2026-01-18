@@ -2,6 +2,12 @@ import React from "react";
 import styles from "./contact.module.css";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Contact Page",
+  description: "You can contact us through the various social media platforms or by simply writing us Message",
+};
+
+
 const ContactPage = () => {
   return (
     <div className={styles.container}>

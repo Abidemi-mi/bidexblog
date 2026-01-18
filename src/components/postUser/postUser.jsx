@@ -1,4 +1,4 @@
-import { getUser } from "@/lib/data";
+import { getUser } from "@/app/lib/data";
 import styles from "./postUser.module.css";
 import Image from "next/image";
 
@@ -19,6 +19,10 @@ const PostUser = async ({ userId }) => {
 
   // FETCH DATA WITHOUT AN API
   const user = await getUser(userId);
+
+  if(!user){
+    return
+  }
 
   return (
     <div className={styles.container}>
