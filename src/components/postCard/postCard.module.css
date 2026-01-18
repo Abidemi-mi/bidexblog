@@ -20,9 +20,11 @@
 }
 
 .date{
+  margin: auto;
+  width:85px;
   font-size: 12px;
   transform: rotate(270deg);
-  margin: auto;
+
 }
 
 .title{

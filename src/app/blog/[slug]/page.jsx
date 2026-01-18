@@ -27,7 +27,7 @@ export const generateMetadata = async ({ params }) => {
 };
 
 const SinglePostPage = async ({ params }) => {
-  const { slug } = params;
+  const { slug } = await params;
 
   // FETCH DATA WITH AN API
   const post = await getData(slug);
