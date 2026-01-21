@@ -1,8 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./links.module.css";
 import NavLink from "../navLinks/navLinks";
 import Image from "next/image";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+
 
 const links = [
   {
@@ -29,7 +31,20 @@ const Links = () => {
   const [open, setOpen] = useState(false);
 
   const isAdmin = true;
-  const session = true;
+  const { data: session } = useSession();
+  const profileImage = session?.user?.image;
+
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = await getProviders();
+      setProviders(res);
+    };
+
+    setAuthProviders();
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.links}>
@@ -39,10 +54,24 @@ const Links = () => {
         {session ? (
           <>
             {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
-            <button className={styles.logout}>Log Out</button>
+            <button onClick={() => signOut()} className={styles.logout}>Log Out</button>
+
+            <Image src={profileImage || '/noavatar.png'} alt="" width={40} height={40} />
           </>
         ) : (
-          <NavLink item={{ title: "Login", path: "/login " }} />
+          <>
+            {providers &&
+              Object.values(providers).map((provider, index) => (
+                <button
+                  className={styles.login}
+                  key={index}
+                  onClick={() => signIn(provider.id)}
+                >
+                  {" "}
+                  Login
+                </button>
+              ))}
+          </>
         )}
       </div>
       <Image
@@ -58,6 +87,27 @@ const Links = () => {
           {links.map((link) => (
             <NavLink item={link} key={link.title} />
           ))}
+          {session ? (
+            <>
+              {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
+              <button onClick={() => signOut()} className={styles.logout}>Log Out</button>
+              <Image src={profileImage || '/noavatar.png'} alt="" width={40} height={40} />
+            </>
+          ) : (
+            <>
+              {providers &&
+                Object.values(providers).map((provider, index) => (
+                  <button
+                    className={styles.login}
+                    key={index}
+                    onClick={() => signIn(provider.id)}
+                  >
+                    {" "}
+                    Login
+                  </button>
+                ))}
+            </>
+          )}
         </div>
       )}
     </div>

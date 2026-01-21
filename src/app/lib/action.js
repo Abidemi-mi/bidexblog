@@ -1,5 +1,6 @@
 "use server"
 
+
 import { Post } from "./models";
 import { connectToDb } from "./utils";
 
@@ -29,3 +30,9 @@ export const sayHello = async (formData ) => {
 };
 
 
+ 
+
+  //  export const handleGithubLogOut = async () => {
+  //    "use server"
+  //    await signOut("github");
+  // };

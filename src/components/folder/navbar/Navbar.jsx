@@ -3,7 +3,10 @@ import Links from "./links/Links";
 import styles from "./navbar.module.css"
 import Link from "next/link";
 
-const Navbar = () => {
+
+const Navbar = async() => {
+   
+   console.log()
   return (
     <div className={styles.container }>
       <Link href="/" className={styles.logo}>Bide<span>X</span>blog</Link>

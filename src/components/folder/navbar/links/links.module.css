@@ -14,6 +14,19 @@
   border-radius: 3px;
 }
 
+.login{
+  padding: 4px 8px;
+  margin-left: 2px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.profileImage{
+  position: relative;
+  border-radius: 50%;
+}
+
 .menuButton,
 .mobileLinks {
   display: none;
