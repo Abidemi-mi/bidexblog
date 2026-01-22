@@ -68,7 +68,7 @@ const Links = () => {
                   onClick={() => signIn(provider.id)}
                 >
                   {" "}
-                  Login
+                  Sign in
                 </button>
               ))}
           </>
@@ -103,7 +103,7 @@ const Links = () => {
                     onClick={() => signIn(provider.id)}
                   >
                     {" "}
-                    Login
+                    Sign in
                   </button>
                 ))}
             </>
