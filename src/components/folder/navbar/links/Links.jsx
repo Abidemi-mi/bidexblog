@@ -5,7 +5,6 @@ import NavLink from "../navLinks/navLinks";
 import Image from "next/image";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
-
 const links = [
   {
     title: "Home",
@@ -30,7 +29,6 @@ const links = [
 const Links = () => {
   const [open, setOpen] = useState(false);
 
-  const isAdmin = true;
   const { data: session } = useSession();
   const profileImage = session?.user?.image;
 
@@ -53,24 +51,26 @@ const Links = () => {
         ))}{" "}
         {session ? (
           <>
-            {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
-            <button onClick={() => signOut()} className={styles.logout}>Log Out</button>
+            {session?.user?.isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
+            <button onClick={() => signOut()} className={styles.logout}>
+              Log Out
+            </button>
 
-            <Image src={profileImage || '/noavatar.png'} alt="" width={40} height={40} />
+            <Image
+              src={profileImage || "/noavatar.png"}
+              alt=""
+              width={40}
+              height={40}
+            />
           </>
         ) : (
           <>
-            {providers &&
-              Object.values(providers).map((provider, index) => (
-                <button
-                  className={styles.login}
-                  key={index}
-                  onClick={() => signIn(provider.id)}
-                >
-                  {" "}
-                  Sign in
-                </button>
-              ))}
+            <NavLink item={{ title: "Login", path: "/login" }} />
+            {providers?.google && (
+              <button className={styles.login} onClick={() => signIn("google")}>
+                Google Sign In
+              </button>
+            )}
           </>
         )}
       </div>
@@ -83,29 +83,34 @@ const Links = () => {
         onClick={() => setOpen((prev) => !prev)}
       />
       {open && (
-        <div className={styles.mobileLinks}>
+        <div className={styles.mobileLinks}  onClick={() => setOpen(false)}>
           {links.map((link) => (
-            <NavLink item={link} key={link.title} />
+            <NavLink item={link} key={link.title}  />
           ))}
           {session ? (
             <>
-              {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
-              <button onClick={() => signOut()} className={styles.logout}>Log Out</button>
-              <Image src={profileImage || '/noavatar.png'} alt="" width={40} height={40} />
+              {session?.user?.isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
+              <button onClick={() => signOut()} className={styles.logout}>
+                Log Out
+              </button>
+              <Image
+                src={profileImage || "/noavatar.png"}
+                alt=""
+                width={40}
+                height={40}
+              />
             </>
           ) : (
             <>
-              {providers &&
-                Object.values(providers).map((provider, index) => (
-                  <button
-                    className={styles.login}
-                    key={index}
-                    onClick={() => signIn(provider.id)}
-                  >
-                    {" "}
-                    Sign in
-                  </button>
-                ))}
+              <NavLink item={{ title: "Login", path: "/login" }}  />
+              {providers?.google && (
+                <button
+                  className={styles.login}
+                  onClick={() => signIn("google")}
+                >
+                  Google Sign In
+                </button>
+              )}
             </>
           )}
         </div>

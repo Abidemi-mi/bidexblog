@@ -1,22 +1,50 @@
 .container {
-  height: 100px;
+  height: var(--nav-height);
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.logo{
-    font-size: 1.2rem;
-    font-weight: bold;
-} 
-
-.logo span{
-  color: goldenrod;
-  font-size: 2rem;
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s ease;
 }
 
-.logo span:hover{
-  color: whitesmoke;
+.logo span {
+  color: var(--primary);
+  /* Override text-fill-color for the span if needed, but gradient usually covers it well. 
+     If we want the 'X' to pop more: */
+  -webkit-text-fill-color: var(--primary);
+  margin: 0 2px;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 0;
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
 }

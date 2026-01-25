@@ -1,9 +1,12 @@
 "use server";
+
+import { revalidatePath } from "next/cache";
+// import { signIn } from "next-auth/react";
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
-export const sayHello = async (formData) => {
+export const addPost = async (previousState, formData) => {
   const { title, slug, desc, userId } = Object.fromEntries(formData);
 
   console.log(title, desc, slug);
@@ -17,31 +20,47 @@ export const sayHello = async (formData) => {
     });
     await newPost.save();
     console.log("saved to db");
+    revalidatePath("/blog");
+    revalidatePath("/admin");
   } catch (error) {
     console.log(error);
-    throw new Error("failed to Save new post");
+    throw new Error("Something went wrong!");
   }
-
-  console.log("Action works");
 };
 
-export const handleRegister = async (formData) => {
+export const deletePost = async (formData) => {
+  const { id } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+
+    await Post.findByIdAndDelete(id);
+    console.log("Post deleted from db");
+    revalidatePath("/admin");
+    revalidatePath("/blog");
+  } catch (error) {
+    console.log(error);
+    return { error: "Something went wrong" };
+  }
+};
+
+export const register = async (previousState, formData) => {
   "use server";
 
-  const { username, email, password, passwordRepeat } =
+  const { username, email, password, passwordRepeat, image } =
     Object.fromEntries(formData);
 
   if (password !== passwordRepeat) {
-    return "Password do not match";
+    return { error: "Password do not match" };
   }
 
   try {
     await connectToDb();
 
-    let user = await User.findOne({username});
+    let user = await User.findOne({ username });
 
     if (user) {
-      return "User already exist";
+      return { error: "User already exist" };
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -50,14 +69,52 @@ export const handleRegister = async (formData) => {
     const newUser = new User({
       username,
       email,
+      image,
       password: hashedPassword,
-      
     });
 
     await newUser.save();
     console.log("saved to Db");
+    return { success: true };
   } catch (error) {
-    console.log(error)
-    throw new Error(error, "Failed to register");
+    console.log(error);
+    return { error: "Email already exists for another user" };
+  }
+};
+
+export const addUser = async (previousState, formData) => {
+  const { username, email, password, image } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+    const newUser = new User({
+      username,
+      email,
+      password,
+      image,
+    });
+
+    await newUser.save();
+    console.log("User saved db");
+    revalidatePath("/admin");
+  } catch (error) {
+    console.log(error);
+    return { error: "Something went wrong" };
+  }
+};
+
+export const deleteUser = async (formData) => {
+  const { id } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+
+    await Post.deleteMany({ userId: id });
+    await User.findByIdAndDelete(id);
+    console.log("User deleted from db");
+    revalidatePath("/admin");
+  } catch (error) {
+    console.log(error);
+    return { error: "Something went wrong" };
   }
 };

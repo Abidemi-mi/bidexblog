@@ -1,45 +1,108 @@
-.container{
+.container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 1.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.top{
-  display: flex;
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-.imgContainer{
-  width: 90%;
-  height: 400px;
+.top {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Fixed height for image area */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imgContainer {
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
-.img{
+.img {
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.date{
-  margin: auto;
-  width:85px;
-  font-size: 12px;
-  transform: rotate(270deg);
-
+.container:hover .img {
+  transform: scale(1.05);
 }
 
-.title{
-  width: 90%;
-  font-size: 24px;
-  margin-bottom: 20px;
+.date {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  z-index: 2;
+  backdrop-filter: blur(4px);
 }
 
-.desc{
-  width: 90%;
-  margin-bottom: 20px;
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 0;
+}
+
+.desc {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.5;
   font-weight: 300;
-  color: gray;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
 }
 
-.link{
-  text-decoration: underline;
+.link {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: auto;
+  align-self: flex-start;
+  position: relative;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.link:hover::after {
+  width: 100%;
 }

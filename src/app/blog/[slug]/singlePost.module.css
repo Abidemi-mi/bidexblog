@@ -1,70 +1,97 @@
-.container{
-    display: flex;
-    gap: 100px;
+.container {
+  display: flex;
+  gap: 4rem;
+  padding-bottom: 4rem;
 }
 
-.imgContainer{
-    flex: 1;
-    height: calc(100vh - 200px);
-    position: relative; 
+.imgContainer {
+  flex: 1;
+  height: calc(100vh - 150px); /* Tall, immersive image */
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.img{
+.img {
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.textContainer{
-    flex: 2;
-    display: flex;
+.img:hover {
+  transform: scale(1.02);
+}
+
+.textContainer {
+  flex: 1; /* Give text less space than before if image is hero, or equal */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--text) 0%, var(--text-soft) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+.detailText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detailTitle {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.detailValue {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-soft);
+  text-align: justify;
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .container {
     flex-direction: column;
-    gap: 50px;
+    gap: 3rem;
+  }
+
+  .imgContainer {
+    height: 50vh;
+  }
 }
 
-.title{
-    font-size: 64px;
-}
-
-.detail{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.DetailTextWrapper{
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-}
-
-.detailText{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.detailTitle{
-    color: gray;
-    font-weight: bold;
-}
-
-.detailValue{
-    font-weight: 500;
-}
-
-.avatar{
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.content{
-    font-weight: 20px;
-}
-
-@media (max-width: 768px) {
-    .container{
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-    }
-    
+@media (max-width: 640px) {
+  .title {
+    font-size: 2.5rem;
+  }
 }
