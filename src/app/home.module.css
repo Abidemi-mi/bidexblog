@@ -164,7 +164,9 @@
 
 @media (max-width: 768px) {
   .container {
-    gap: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20;
     justify-content: center;
     padding-top: 2rem;
     height: auto;
@@ -173,6 +175,7 @@
 
   .title {
     font-size: 2.8rem;
+    margin-top: 1.7rem;
   }
 
   .textContainer {
@@ -180,6 +183,7 @@
     text-align: center;
     width: 100%;
     padding: 0 1rem;
+    margin-top: 1rem;
   }
 
   .imageContainer {
@@ -189,7 +193,7 @@
   .buttons {
     flex-direction: column;
     width: 100%;
-    gap: 1rem;
+    gap: 1.3rem;
     margin-top: 3rem;
   }
 
@@ -199,5 +203,6 @@
 
   .desc {
     font-size: 1rem;
+    margin-top: 3rem;
   }
 }
