@@ -9,7 +9,12 @@ export async function middleware(req) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  console.log("Middleware Path:", pathname, "| Token found:", !!token);
+  console.log("--- Production Middleware Debug ---");
+  console.log("Path:", pathname);
+  console.log("Token exists:", !!token);
+  console.log("Base URL:", process.env.NEXT_BASE_URL);
+  console.log("Auth URL:", process.env.NEXTAUTH_URL);
+  console.log("----------------------------------");
 
   // 1. Always allow API routes
   if (pathname.startsWith("/api")) {
