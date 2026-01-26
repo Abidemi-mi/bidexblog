@@ -9,19 +9,19 @@ export async function middleware(req) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  // 1️ Allow auth routes & login page
+  // 1. Allow auth routes & API routes
   if (pathname.startsWith("/login") || pathname.startsWith("/register") || pathname.startsWith("/api")) {
     return NextResponse.next();
   }
 
-  // 2️ Not logged in → force login
+  // 2. Protect All Other Pages (Force Login)
   if (!token) {
     const loginUrl = new URL("/login", req.url);
     loginUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  // Admin-only protection
+  // 3. Protect Admin Page (Admin Only)
   if (pathname.startsWith("/admin") && token.isAdmin !== true) {
     return NextResponse.redirect(new URL("/", req.url));
   }
