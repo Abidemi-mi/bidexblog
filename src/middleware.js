@@ -9,24 +9,39 @@ export async function middleware(req) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  // 1. Allow auth routes & API routes
-  if (pathname.startsWith("/login") || pathname.startsWith("/register") || pathname.startsWith("/api")) {
+  console.log("Middleware Path:", pathname, "| Token found:", !!token);
+
+  // 1. Always allow API routes
+  if (pathname.startsWith("/api")) {
     return NextResponse.next();
   }
 
-  // 2. Protect All Other Pages (Force Login)
-  if (!token) {
-    const loginUrl = new URL("/login", req.url);
-    loginUrl.searchParams.set("callbackUrl", pathname);
-    return NextResponse.redirect(loginUrl);
+  // 2. Logic for Authenticated Users
+  if (token) {
+    // Redirect logged-in users away from Login/Register to Home
+    if (pathname.startsWith("/login") || pathname.startsWith("/register")) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
+
+    // Protect Admin Page (Admin Only)
+    if (pathname.startsWith("/admin") && token.isAdmin !== true) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
+
+    // Allow everything else for members
+    return NextResponse.next();
   }
 
-  // 3. Protect Admin Page (Admin Only)
-  if (pathname.startsWith("/admin") && token.isAdmin !== true) {
-    return NextResponse.redirect(new URL("/", req.url));
+  // 3. Logic for Guests (Unauthenticated)
+  // Only allow Login and Register pages
+  if (pathname.startsWith("/login") || pathname.startsWith("/register")) {
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
+  // Force redirect all other guest requests to Login
+  const loginUrl = new URL("/login", req.url);
+  loginUrl.searchParams.set("callbackUrl", pathname);
+  return NextResponse.redirect(loginUrl);
 }
 
 export const config = {
