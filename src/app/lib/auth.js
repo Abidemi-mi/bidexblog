@@ -56,13 +56,15 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           const user = await login(credentials);
-          return user;
+          return user ? user.toObject() : null;
         } catch (error) {
           throw new Error(error);
         }
       },
     }),
   ],
+
+  secret: process.env.NEXTAUTH_SECRET,
 
   pages: {
     signIn: "/login",
@@ -80,9 +82,9 @@ export const authOptions = {
 
     async session({session, token}){
       if(token){
-        session.id = token.id;
+        session.user.id = token.id;
+        session.user.isAdmin = token.isAdmin;
       }
-      session.user.isAdmin = token.isAdmin;
       return session;
     },
     async signIn({ user, account, profile }) {
