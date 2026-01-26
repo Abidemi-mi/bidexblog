@@ -14,7 +14,7 @@ const AdminPosts = async () => {
         <div className={styles.post} key={post.id}>
           <div className={styles.details}>
             <Image
-              src={post.img || "/noAvatar.png"}
+              src={post.img || "/noavatar.png"}
               width={50}
               height={50}
               alt={post.title}

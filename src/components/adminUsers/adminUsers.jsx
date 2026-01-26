@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./AdminUsers.module.css";
+import styles from "./adminUsers.module.css";
 import {  getUsers } from "@/app/lib/data";
 import Image from "next/image";
 import { deleteUser } from "@/app/lib/action";
@@ -13,7 +13,7 @@ const AdminUsers = async () => {
         <div className={styles.user} key={user.id}>
           <div className={styles.details}>
             <Image
-              src={user.img || "/noAvatar.png"}
+              src={user.img || "/noavatar.png"}
               width={50}
               height={50}
               alt={user.username}
