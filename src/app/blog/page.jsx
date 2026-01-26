@@ -1,16 +1,13 @@
 import React from "react";
 import styles from "./blog.module.css";
 import PostCard from "@/components/postCard/postCard";
+import { Post } from "@/app/lib/models";
+import { connectToDb } from "@/app/lib/utils";
 
 const getData = async () => {
-  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/blog`, {
-    next: { revalidate: 3000 },
-  });
-  if (!res.ok) {
-    throw new Error("Something went wrong");
-  }
-
-  return res.json();
+  connectToDb();
+  const posts = await Post.find();
+  return posts;
 };
 
 const BlogPage = async () => {

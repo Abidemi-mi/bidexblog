@@ -1,9 +1,9 @@
-const { Post } = require("@/app/lib/models")
-const { connectToDb } = require("@/app/lib/utils")
-const { NextResponse } = require("next/server")
+import { Post } from "@/app/lib/models";
+import { connectToDb } from "@/app/lib/utils";
+import { NextResponse } from "next/server";
 
 export const GET = async (request, {params}) => {
-    const {slug} = await params;
+    const {slug} = params;
     try {
          connectToDb()
         const post = await Post.findOne({slug})
