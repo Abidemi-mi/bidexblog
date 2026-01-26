@@ -68,7 +68,6 @@ export const authOptions = {
     signIn: "/login",
 
   },
-  provider: [],
   
   callbacks: {
     async jwt({token, user}){
@@ -86,11 +85,6 @@ export const authOptions = {
       session.user.isAdmin = token.isAdmin;
       return session;
     },
-    authorized({auth, request}){
-      console.log(auth)
-      return request
-    },
-   
     async signIn({ user, account, profile }) {
       await connectToDb();
 
