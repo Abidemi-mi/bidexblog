@@ -2,7 +2,7 @@ import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
 import { User } from "./models";
-import bcrypt from "bcryptjs";
+import * as bcrypt from "bcryptjs";
 
 
 const login = async (credentials) => {

@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 // import { signIn } from "next-auth/react";
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
-import bcrypt from "bcryptjs";
+import * as bcrypt from "bcryptjs";
 
 export const addPost = async (previousState, formData) => {
   const { title, slug, desc, userId } = Object.fromEntries(formData);
@@ -32,7 +32,7 @@ export const deletePost = async (formData) => {
   const { id } = Object.fromEntries(formData);
 
   try {
-    connectToDb();
+    await connectToDb();
 
     await Post.findByIdAndDelete(id);
     console.log("Post deleted from db");
@@ -86,7 +86,7 @@ export const addUser = async (previousState, formData) => {
   const { username, email, password, image } = Object.fromEntries(formData);
 
   try {
-    connectToDb();
+    await connectToDb();
     const newUser = new User({
       username,
       email,
@@ -107,7 +107,7 @@ export const deleteUser = async (formData) => {
   const { id } = Object.fromEntries(formData);
 
   try {
-    connectToDb();
+    await connectToDb();
 
     await Post.deleteMany({ userId: id });
     await User.findByIdAndDelete(id);

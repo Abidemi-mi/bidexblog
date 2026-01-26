@@ -1,11 +1,12 @@
 import React from "react";
+export const dynamic = "force-dynamic";
 import styles from "./blog.module.css";
 import PostCard from "@/components/postCard/postCard";
 import { Post } from "@/app/lib/models";
 import { connectToDb } from "@/app/lib/utils";
 
 const getData = async () => {
-  connectToDb();
+  await connectToDb();
   const posts = await Post.find();
   return posts;
 };

@@ -1,4 +1,5 @@
 import Image from "next/image";
+export const dynamic = "force-dynamic";
 import styles from "./singlePost.module.css";
 import PostUser from "@/components/postUser/postUser";
 import { Suspense } from "react";
