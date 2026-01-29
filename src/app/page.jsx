@@ -7,10 +7,11 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>Creative Thoughts Agency.</h1>
+        <h1 className={styles.title}>Exploring the Frontier of Digital Innovation.</h1>
         <p className={styles.desc}>
-          We turn your ideas into digital reality. From concept to code, we build
-          immersive web experiences that captivate and convert.
+          Welcome to BideXblog—your premium destination for insights into the
+          future of technology, design, and productivity. We dive deep into the
+          ideas that shape our digital world.
         </p>
 
         <div className={styles.buttons}>

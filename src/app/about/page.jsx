@@ -12,32 +12,32 @@ const AboutPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h2 className={styles.subTitle}>About Agency</h2>
+        <h2 className={styles.subTitle}>Our Story & Mission</h2>
         <h1 className={styles.title}>
-          we create digital idea that are bigger, bolder, braver and better.
+          We believe in digital ideas that are bigger, bolder, and better designed.
         </h1>
         <p className={styles.desc}>
-          Known for creating digital ideas that are bigger, bolder, braver and
-          better. We beleieve in good ideas flexibility and precision. We are a
-          force to reckon with and our special Team are best in consulting &
-          finance solution provider, wide range of web and software development
-          services.
+          BideXblog was born out of a passion for storytelling and technological
+          excellence. We are dedicated to providing high-quality content that
+          bridges the gap between complex digital concepts and real-world
+          application. Our mission is to inspire, educate, and empower the next
+          generation of digital creators.
         </p>
 
         <div className={styles.boxes}>
           <div className={styles.box}>
-            <h1>10 K+</h1>
-            <p>Years of experience</p>
+            <h1>500+</h1>
+            <p>Articles Published</p>
           </div>
 
           <div className={styles.box}>
-            <h1>10 K+</h1>
-            <p>Years of experience</p>
+            <h1>50 K+</h1>
+            <p>Monthly Readers</p>
           </div>
 
           <div className={styles.box}>
-            <h1>10 K+</h1>
-            <p>Years of experience</p>
+            <h1>10+</h1>
+            <p>Expert Contributors</p>
           </div>
         </div>
       </div>
