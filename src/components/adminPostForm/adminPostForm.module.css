@@ -131,3 +131,27 @@
     transform: translateY(0);
   }
 }
+
+.error {
+  color: #ff4757;
+  background: rgba(255, 71, 87, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  margin-top: 1rem;
+  text-align: center;
+  border: 1px solid rgba(255, 71, 87, 0.2);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.success {
+  color: #2ed573;
+  background: rgba(46, 213, 115, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  margin-top: 1rem;
+  text-align: center;
+  border: 1px solid rgba(46, 213, 115, 0.2);
+  animation: fadeIn 0.3s ease-out;
+}

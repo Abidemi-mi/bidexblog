@@ -10,7 +10,7 @@
 }
 
 .logo {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.1rem;
   background: linear-gradient(to right, var(--text-soft), var(--text));
   -webkit-background-clip: text;
