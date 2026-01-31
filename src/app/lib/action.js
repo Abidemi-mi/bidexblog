@@ -138,7 +138,7 @@ export const deleteUser = async (formData) => {
   }
 };
 
-export const addContact = async (formData) => {
+export const addContact = async (previousState, formData) => {
   const { name, email, phone, message } = Object.fromEntries(formData);
 
   console.log("Adding contact message from:", { name, email });
