@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./contact.module.css";
 import Image from "next/image";
+import ContactForm from "@/components/contactForm/contactForm";
 
 export const metadata = {
   title: "Contact Page",
@@ -16,14 +17,7 @@ const ContactPage = () => {
       </div>
 
       <div className={styles.formContainer}>
-        <form className={styles.form}>
-          <input type="text" placeholder="Name and Surname" />
-          <input type="email" placeholder="Email Address" />
-          <input type="text" placeholder="Phone Number (Optional" />
-          <textarea cols="30" rows="10" placeholder="Message" name="" id="" />
-
-          <button className={styles.button}>Sent</button>
-        </form>
+        <ContactForm />
       </div>
     </div>
   );

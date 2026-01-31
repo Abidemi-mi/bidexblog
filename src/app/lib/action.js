@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { Post, User } from "./models";
+import { Post, User, Contact } from "./models";
 import { connectToDb } from "./utils";
 
 export const addPost = async (previousState, formData) => {
@@ -135,5 +135,31 @@ export const deleteUser = async (formData) => {
   } catch (error) {
     console.error("Delete user error:", error);
     return { error: "Failed to delete user." };
+  }
+};
+
+export const addContact = async (formData) => {
+  const { name, email, phone, message } = Object.fromEntries(formData);
+
+  console.log("Adding contact message from:", { name, email });
+
+  if (!name || !email || !message) {
+    return { error: "Validation error: Name, email, and message are required." };
+  }
+
+  try {
+    await connectToDb();
+    const newContact = new Contact({
+      name,
+      email,
+      phone,
+      message,
+    });
+    await newContact.save();
+    console.log("Contact message successfully saved to database.");
+    return { success: true };
+  } catch (error) {
+    console.error("CRITICAL ERROR in addContact action:", error);
+    return { error: "Something went wrong. Please try again later." };
   }
 };
