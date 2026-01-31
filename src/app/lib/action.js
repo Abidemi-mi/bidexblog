@@ -149,6 +149,7 @@ export const addContact = async (previousState, formData) => {
 
   try {
     await connectToDb();
+    const { Contact } = await import("./models");
     const newContact = new Contact({
       name,
       email,
